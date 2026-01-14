@@ -2,24 +2,25 @@
 # Script para análise de vendas utilizando Pandas, Matplotlib e Seaborn
 
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.pyplot as plt
 
-# Configurações de visualização
-plt.style.use('seaborn-whitegrid')
-sns.set_palette('Set2')
+# Configuração de estilo compatível
+sns.set_style('whitegrid')  # estilo "grid branco" do Seaborn
+sns.set_palette('Set2')     # paleta de cores
 
-# 1️⃣ Carregar os dados
-dados = pd.read_csv('../dados/vendas.csv', parse_dates=['Data Venda'])
 
-# 2️⃣ Limpeza e tratamento
+# Carregar os dados
+dados = pd.read_csv('vendas.csv', parse_dates=['Data Venda'])
+
+# Limpeza e tratamento
 # Verificando valores ausentes
 print(dados.isnull().sum())
 
 # Estatísticas básicas
 print(dados.describe())
 
-# 3️⃣ Análise exploratória
+# Análise exploratória
 # Total de vendas por categoria
 vendas_categoria = dados.groupby('Categoria')['Valor Total'].sum().sort_values(ascending=False)
 print(vendas_categoria)
